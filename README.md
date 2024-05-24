@@ -1,8 +1,11 @@
 # Visualizer 👁‍🗨
 ## You can choose the color in <code>style/asahikawa.py</code> 
 ### Usage 
-<code> pip install -r requirements.txt</code>
-<code> from util import * <code> 
+```python
+pip install requirements.txt
+from util import *
+visualizer = Visualizer(csv_path, xaxis=True, CI=False)
+```
 
 ```python
 %matplotlib inline 
