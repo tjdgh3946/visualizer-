@@ -6,7 +6,7 @@
 %matplotlib inline 
 %reload_ext autoreload
 %autoreload 2
-from util import * 
+from visualizer import * 
 import pandas as pd
 ```
 
@@ -472,7 +472,7 @@ pd.read_csv("data/mbar_CI.csv") # file for confidence interval values
 
 ```python
 visualizer = Visualizer("data/mbar.csv", xaxis=True, CI=False) 
-visualizer.mutiple_bar("figure/mbar.png", grid=False, ylabel="AUROC", title="Multiple bar chart")
+visualizer.mutiple_bar(grid=False, ylabel="AUROC", title="Multiple bar chart")
 ```
 
 
@@ -484,7 +484,7 @@ visualizer.mutiple_bar("figure/mbar.png", grid=False, ylabel="AUROC", title="Mul
 
 ```python
 visualizer = Visualizer("data/mbar.csv", xaxis=True, CI=True) 
-visualizer.mutiple_bar("figure/mbar.png", grid=False, ylabel="AUROC", title="Multiple bar chart with CI")
+visualizer.mutiple_bar(grid=False, ylabel="AUROC", title="Multiple bar chart with CI")
 ```
 
 
@@ -501,7 +501,7 @@ from ou_noise import ou
 t = np.arange(0, 30, 0.01)
 x = ou.path(0.0, t, .4, 0.5, 0.05)
 y = ou.path(0.0, t , .4, 0.5, 0.05)
-Visualizer.scatter("figure/ou_process.png", x,y,timestamp=t, title="Trajectory of OU process")
+Visualizer.scatter(x,y,timestamp=t, title="Trajectory of OU process")
 ```
 
 
