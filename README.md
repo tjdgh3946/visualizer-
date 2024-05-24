@@ -6,7 +6,7 @@ pip install requirements.txt
 from util import *
 visualizer = Visualizer(csv_path, xaxis=True, CI=False)
 ```
-
+### Jupyter example 
 ```python
 %matplotlib inline 
 %reload_ext autoreload
