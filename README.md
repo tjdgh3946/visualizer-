@@ -43,6 +43,7 @@ df
       <th>Alpaca</th>
       <th>LLama 7b</th>
       <th>OTP-6.7b</th>
+      <th>LLama 13b</th>
       <th>Ours</th>
     </tr>
   </thead>
@@ -53,6 +54,7 @@ df
       <td>34.5</td>
       <td>32.3</td>
       <td>31.5</td>
+      <td>31.5</td>
       <td>34.5</td>
     </tr>
     <tr>
@@ -61,6 +63,7 @@ df
       <td>34.6</td>
       <td>32.5</td>
       <td>32.4</td>
+      <td>33.3</td>
       <td>34.9</td>
     </tr>
     <tr>
@@ -69,6 +72,7 @@ df
       <td>35.0</td>
       <td>34.4</td>
       <td>34.3</td>
+      <td>34.5</td>
       <td>35.9</td>
     </tr>
     <tr>
@@ -77,6 +81,7 @@ df
       <td>35.2</td>
       <td>35.1</td>
       <td>35.5</td>
+      <td>36.5</td>
       <td>36.8</td>
     </tr>
     <tr>
@@ -85,6 +90,7 @@ df
       <td>35.5</td>
       <td>35.9</td>
       <td>35.6</td>
+      <td>35.3</td>
       <td>37.8</td>
     </tr>
   </tbody>
@@ -96,7 +102,7 @@ df
 
 ```python
 visualizer = Visualizer("data/example.csv", xaxis=True, CI=False)
-visualizer.plot(xlabel="Step", ylabel="BLEU", marker="o", linestyle="--", title="Plot")
+visualizer.plot(xlabel="Step", ylabel="BLEU", marker="enum", linestyle="--", title="Plot", legend=True, markersize=8)
 ```
 
 
@@ -188,7 +194,7 @@ df
 
 ```python
 visualizer = Visualizer("data/gdp.csv", xaxis=True, CI=False, label_axis='col')
-visualizer.two_yscale_plot(xlabel="year", marker="o", linestyle="--", grid=False, title="Two y-scales plot")
+visualizer.two_yscale_plot(xlabel="year", marker="o", linestyle="--", grid=False, title="Two y-scales plot", markersize=8)
 ```
 
 
@@ -322,7 +328,7 @@ visualizer.histogram(density=True, ylabel="Density", title="Histogram")
 
 
 ```python
-pd.read_csv("data/mbar.csv")
+pd.read_csv("data/llama3_halu.csv")
 ```
 
 
@@ -346,50 +352,29 @@ pd.read_csv("data/mbar.csv")
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>type</th>
-      <th>GPT-neo 1.3B</th>
-      <th>GPT-neo 2.7B</th>
-      <th>OPT 1.3B</th>
-      <th>OPT 13B</th>
-      <th>GPT-3 davinci 002</th>
+      <th>Method</th>
+      <th>Entropy</th>
+      <th>Semantic</th>
+      <th>Self-CheckGPT</th>
+      <th>Prompt-based</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>occupation</td>
-      <td>0.30</td>
-      <td>0.40</td>
-      <td>0.50</td>
-      <td>0.40</td>
-      <td>0.51</td>
+      <td>In-context</td>
+      <td>0.039</td>
+      <td>0.032</td>
+      <td>0.027</td>
+      <td>0.025</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>author</td>
-      <td>0.43</td>
-      <td>0.41</td>
-      <td>0.56</td>
-      <td>0.38</td>
-      <td>0.52</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>director</td>
-      <td>0.41</td>
-      <td>0.29</td>
-      <td>0.38</td>
-      <td>0.64</td>
-      <td>0.12</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>country</td>
-      <td>0.12</td>
-      <td>0.23</td>
-      <td>0.14</td>
-      <td>0.52</td>
-      <td>0.25</td>
+      <td>Reward model</td>
+      <td>0.041</td>
+      <td>0.052</td>
+      <td>0.036</td>
+      <td>0.038</td>
     </tr>
   </tbody>
 </table>
@@ -471,8 +456,8 @@ pd.read_csv("data/mbar_CI.csv") # file for confidence interval values
 
 
 ```python
-visualizer = Visualizer("data/mbar.csv", xaxis=True, CI=False) 
-visualizer.mutiple_bar(grid=False, ylabel="AUROC", title="Multiple bar chart")
+visualizer = Visualizer("data/temp.csv", xaxis=True, CI=False) 
+visualizer.mutiple_bar(grid=False, xlabel="temperature", ylabel="AUROC", title="Multiple bar chart")
 ```
 
 
@@ -493,6 +478,20 @@ visualizer.mutiple_bar(grid=False, ylabel="AUROC", title="Multiple bar chart wit
     
 
 
+# Array
+
+
+```python
+matrix = np.random.standard_normal(size=(12,12))
+Visualizer.display_array(matrix, cmap="viridis")
+```
+
+
+    
+![svg](example_files/example_17_0.svg)
+    
+
+
 # Scatter 
 
 
@@ -506,6 +505,6 @@ Visualizer.scatter(x,y,timestamp=t, title="Trajectory of OU process")
 
 
     
-![svg](example_files/example_17_0.svg)
+![svg](example_files/example_19_0.svg)
     
 

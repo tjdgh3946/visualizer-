@@ -18,7 +18,6 @@ def generate_style(
         "axes.labelcolor": foreground,
         "xtick.color": foreground,
         "ytick.color": foreground,
-        "legend.framealpha": 0,
         "grid.color": comment,
         "figure.facecolor": background,
         "figure.edgecolor": background,
@@ -29,21 +28,22 @@ def generate_style(
         "boxplot.flierprops.color": foreground,
         "boxplot.flierprops.markeredgecolor": foreground,
         "boxplot.whiskerprops.color": foreground,
-        "axes.prop_cycle": mpl.cycler(color=cycle), 
+        "axes.prop_cycle": mpl.cycler(color=cycle),
     }
+
 
 if __name__ == "__main__":
     plot = generate_style(
-            background="#FFFFFF",
-            foreground="#000000",
-            comment="#ABB0B6",
-            cycle=[
-                "#7fb3b8",  # Light blue
-                "#C08497",  # red
-                "#F1A500",  # orange
-                "#F7E3AF",  # Peach
-                "#C3EEC3",  # Lemon chiffon
-                "#84DCC6",  # gray
-                "#ACD7EC",  # Uranian Blue 
-            ],
-        )
+        background="#FFFFFF",
+        foreground="#000000",
+        comment="#ABB0B6",
+        cycle=[
+            "#7fb3b8",  # Light blue
+            "#C08497",  # red
+            "#F1A500",  # orange
+            "#F7E3AF",  # Peach
+            "#C3EEC3",  # Lemon chiffon
+            "#84DCC6",  # gray
+            "#ACD7EC",  # Uranian Blue
+        ],
+    )

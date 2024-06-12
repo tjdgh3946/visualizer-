@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotx
 import numpy as np
-import itertools
 from style.asahikawa import asahikawa
 
 
@@ -56,36 +55,12 @@ class Visualizer:
         xlabel=None,
         ylabel=None,
         title=None,
-        legend=False,
-        markersize=7,
     ):
-        """This method plot (x0, yy) for all labels (e.g, model, method)
-        If the marker="enum", different marker style for each plot is applied"""
-
+        """This method plot (x0, yy) for all labels (e.g, model, method)"""
         CI_flag = True if self.CI.all() else False
-        if marker == "enum":
-            markers = itertools.cycle(("^", "D", "s", "o", "X"))
-
         with plt.style.context(asahikawa["plot"]):
             for i, (y, label) in enumerate(zip(self.yy, self.labels)):
-                if marker == "enum":
-                    plt.plot(
-                        self.x0,
-                        y,
-                        label=label,
-                        marker=next(markers),
-                        linestyle=linestyle,
-                        markersize=markersize,
-                    )
-                else:
-                    plt.plot(
-                        self.x0,
-                        y,
-                        label=label,
-                        marker=marker,
-                        linestyle=linestyle,
-                        markersize=markersize,
-                    )
+                plt.plot(self.x0, y, label=label, marker=marker, linestyle=linestyle)
                 if CI_flag:
                     plt.fill_between(self.x0, y - self.CI[i], y + self.CI[i], alpha=0.2)
             if xlabel:
@@ -97,11 +72,7 @@ class Visualizer:
                 plt.grid()
             if title:
                 plt.title(title, pad=10)
-            if legend:
-                leg = plt.legend(framealpha=0.7)
-                leg.get_frame().set_edgecolor("black")
-            else:
-                matplotx.line_labels()
+            matplotx.line_labels()
             plt.plot()
 
     def two_yscale_plot(
@@ -112,7 +83,6 @@ class Visualizer:
         xlabel=None,
         ylabel=None,
         title=None,
-        markersize=7,
     ):
         """This method plot (x0 ,yy) for two y scales"""
         CI_flag = True if self.CI.any() else False
@@ -126,7 +96,6 @@ class Visualizer:
                 label=self.labels[0],
                 marker=marker,
                 linestyle=linestyle,
-                markersize=markersize,
             )
             plot2 = ax2.plot(
                 self.x0,
@@ -134,7 +103,6 @@ class Visualizer:
                 label=self.labels[1],
                 marker=marker,
                 linestyle=linestyle,
-                markersize=markersize,
             )
             if CI_flag:
                 ax1.fill_between(
