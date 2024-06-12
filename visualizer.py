@@ -256,3 +256,4 @@ class Visualizer:
             plt.scatter(x, y, s=size)
         if title:
             plt.title(title, fontsize=14)
+
