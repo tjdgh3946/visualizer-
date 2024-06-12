@@ -1,7 +1,19 @@
 # Visualizer 👁‍🗨
 ## You can choose the color in <code>style/asahikawa.py</code> 
+### Usage 
+```python
+pip install requirements.txt
+from util import *
+visualizer = Visualizer(csv_path, xaxis=True, CI=False)
+```
+### visualizer 생성자 
+- `__init__ (self, path: str, xaxis: bool = False, CI: bool = False, label_axis: str = "row")` 
+- `path`: csv 파일 경로 
+- `xaxis`: xaxis 정보 (e.g, 시간 축)정보를 포함할지 여부 
+- 'CI': confidence interval 추가 여부, `CI=True` 의 경우 `{path_CI}.csv` 파일에 confidence interval 값 저장 
+- 'label_axis': csv 파일에서 label 정보의 축,  row or column. 
 
-
+### Jupyter example 
 ```python
 %matplotlib inline 
 %reload_ext autoreload
