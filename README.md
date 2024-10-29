@@ -48,7 +48,6 @@ monet.plot(xlabel="Epsilon", ylabel="BLEU", marker="enum", linestyle="--",
     
 
 
-
 ```python
 monet = MonetPlot("data/gdp.csv", xaxis=True, CI=False, label_axis='col')
 monet.two_yscale_plot(xlabel="year", marker="o", linestyle="--", title="Two y-scales plot", markersize=4, path="figure2.png")
@@ -103,7 +102,7 @@ moneplot.mutiple_bar(grid=False, xlabel="", ylabel="AUROC", cgr=1.0, show_value=
     
 
 
-## Miscelleneous
+## Miscellaneous
 
 
 ```python
