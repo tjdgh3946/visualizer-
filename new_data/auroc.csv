@@ -1,0 +1,6 @@
+Epsilon, Balanced, Unbalanced 
+$\epsilon=1$, 0.522, 0.538
+$\epsilon=3$, 0.570, 0.519
+$\epsilon=8$, 0.580, 0.545
+$\epsilon=\infty$ (agg), 0.632, 0.572
+$\epsilon=\infty$, 0.726, 0.731 

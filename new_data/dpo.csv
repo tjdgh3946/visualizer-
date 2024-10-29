@@ -1,0 +1,3 @@
+Method, Entropy, Semantic, Self-CheckGPT, Prompt-based 
+DPO, 0.041, 0.052, 0.046, 0.058  
+PPO, 0.045, 0.061, 0.053, 0.061 
