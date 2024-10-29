@@ -29,7 +29,6 @@ def generate_style(
         "boxplot.flierprops.markeredgecolor": foreground,
         "boxplot.whiskerprops.color": foreground,
         "axes.prop_cycle": mpl.cycler(color=cycle),
-        "font.size": 14,
     }
 
 
