@@ -1,10 +1,12 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotx
 import numpy as np
 import itertools
-from style.asahikawa import asahikawa
+import scienceplots
+
+
+plt.style.use(["science", "no-latex"])
 
 
 def addlabels(x, y, fontsize=8, label_offset=0.0):
@@ -12,8 +14,9 @@ def addlabels(x, y, fontsize=8, label_offset=0.0):
         plt.text(x_, y_ + label_offset, y_, ha="center", fontsize=fontsize)
 
 
-class Visualizer:
-    def __init__(self, path, xaxis=False, CI=False, label_axis="row"):
+class MonetPlot:
+    def __init__(self, path, xaxis=False, CI=False, label_axis="row", custom=False):
+        """For row label axis, the top row represents the class of data"""
         if label_axis == "col":
             data = self._csv_cleansing(path, "rows")
             labels = np.squeeze(data.iloc[:, :1].values, axis=1)
@@ -55,18 +58,21 @@ class Visualizer:
         grid=False,
         xlabel=None,
         ylabel=None,
-        title=None,
         legend=False,
+        title=None,
         markersize=7,
+        titlesize=12,
+        path=None,
     ):
-        """This method plot (x0, yy) for all labels (e.g, model, method)
+        """This method plot (x0, yy) for all type of labels (e.g, model, method)
         If the marker="enum", different marker style for each plot is applied"""
 
+        plt.clf()
         CI_flag = True if self.CI.all() else False
         if marker == "enum":
             markers = itertools.cycle(("^", "D", "s", "o", "X"))
 
-        with plt.style.context(asahikawa["plot"]):
+        with plt.style.context("nature"):
             for i, (y, label) in enumerate(zip(self.yy, self.labels)):
                 if marker == "enum":
                     plt.plot(
@@ -96,12 +102,13 @@ class Visualizer:
             if grid:
                 plt.grid()
             if title:
-                plt.title(title, pad=10)
+                plt.title(title, pad=10, fontsize=titlesize)
             if legend:
-                leg = plt.legend(framealpha=0.7)
-                leg.get_frame().set_edgecolor("black")
-            else:
-                matplotx.line_labels()
+                leg = plt.legend(edgecolor="black")
+                # leg.get_frame().set_edgecolor("black")
+
+            if path:
+                plt.savefig(path, dpi=300)
             plt.plot()
 
     def two_yscale_plot(
@@ -113,10 +120,11 @@ class Visualizer:
         ylabel=None,
         title=None,
         markersize=7,
+        path=None,
     ):
         """This method plot (x0 ,yy) for two y scales"""
         CI_flag = True if self.CI.any() else False
-        with plt.style.context(asahikawa["plot"]):
+        with plt.style.context("nature"):
             fig, ax1 = plt.subplots()
             ax2 = ax1.twinx()
             ax2._get_lines.get_next_color()
@@ -153,11 +161,13 @@ class Visualizer:
                 plt.grid()
             if title:
                 plt.title(title, pad=10)
+            if path:
+                plt.savefig(path, dpi=300)
             plt.plot()
 
-    def histogram(self, density=False, xlabel=None, ylabel=None, title=None):
+    def histogram(self, density=False, xlabel=None, ylabel=None, title=None, path=None):
         """Plot histogram"""
-        with plt.style.context(asahikawa["hist"]):
+        with plt.style.context("nature"):
             for y, label in zip(self.yy, self.labels):
                 plt.hist(y, alpha=0.7, density=density, label=label)
             if xlabel:
@@ -168,23 +178,30 @@ class Visualizer:
             if title:
                 plt.title(title, pad=10)
             plt.plot()
+            if path:
+                plt.savefig(path, dpi=300)
 
     def mutiple_bar(
         self,
         rotation=0,
         grid=False,
         show_value=False,
+        cgr=1.5,
+        wr=1.0,
         xlabel=None,
         ylabel=None,
         title=None,
+        titlesize=10,
+        path=None,
     ):
-        """Plot multiple bar, self.x0: category list, self.labels: class"""
+        """Plot multiple bar, x0: category list, self.labels: class, cgr: class gap ratio, wr:with ratio"""
         CI_flag = True if self.CI.any() else False
-        with plt.style.context(asahikawa["plot"]):
+        plt.figure(figsize=(6.4 * cgr * wr, 4.8))
+        with plt.style.context("nature"):
             plt.cla()
             plt.rcParams.update({"axes.edgecolor": "black"})
-            offsets = np.arange(len(self.x0))
-            width = 1 / (1 + len(self.labels))
+            offsets = np.arange(len(self.x0)) * cgr * wr
+            width = 1 / (1 + len(self.labels)) * wr
             for i, (y, label) in enumerate(zip(self.yy, self.labels)):
                 yerr = self.CI[i] if CI_flag else None
                 plt.bar(
@@ -205,16 +222,18 @@ class Visualizer:
                 else width * (len(self.labels) / 2 - 0.5)
             )
             plt.xticks(offsets + centering, self.x0, rotation=rotation, fontsize=10)
-            plt.ylim(0, np.max(self.yy) * 1.5)
+            plt.ylim(0.0, np.max(self.yy) * 1.2)
             if grid:
                 plt.gca().yaxis.grid(True)
-            plt.legend(loc="upper center", ncol=4, shadow=False, fontsize=8)
+            plt.legend(loc="upper center", ncol=5, shadow=False, fontsize=7)
             if xlabel:
-                plt.xlabel(xlabel)
+                plt.xlabel(xlabel, fontsize=12)
             if ylabel:
-                plt.ylabel(ylabel)
+                plt.ylabel(ylabel, fontsize=12)
             if title:
-                plt.title(title, pad=10)
+                plt.title(title, pad=10, fontsize=titlesize)
+            if path:
+                plt.savefig(path, dpi=300)
             plt.show()
 
     def _csv_cleansing(self, path, axis):
@@ -255,4 +274,5 @@ class Visualizer:
         else:
             plt.scatter(x, y, s=size)
         if title:
-            plt.title(title, fontsize=14)
+            plt.title(title, fontsize=10)
+        plt.show()

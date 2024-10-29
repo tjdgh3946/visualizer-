@@ -1,15 +1,16 @@
-# MonetPlot
-<div style="display: flex; align-items: center;">
-  <img src="figure/monet.jfif" alt="icon" width="100" style="margin-right: 50px;"/>
-  <div>
-  <p style="font-family: '', 'Georgia', 'Times New Roman', serif; font-size: 18px; font-style: italic;">
-  <strong>Transform your csv table into the figure!</strong>
-</p>
-</p>
-  </div>
-</div>
+```python
+import matplotlib.pyplot as plt
+from monetplot import MonetPlot
+import scienceplots
+import numpy as np
+import pandas as pd
+%matplotlib inline 
+%reload_ext autoreload
+%autoreload 2
+```
 
-<h2 style="margin-top: 30px;">Plot</h2>
+## Plot
+
 
 ```python
 monet = MonetPlot("new_data/BLEU_over_k.csv", xaxis=True, CI=False)
@@ -129,3 +130,5 @@ MonetPlot.scatter(x,y,timestamp=t, title="Trajectory of OU process")
 
     
 ![svg](gallery_files/gallery_13_0.svg)
+    
+

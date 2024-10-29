@@ -1,4 +1,4 @@
-Method, Entropy, Semantic, Self-CheckGPT, Prompt-based 
-NSG, 0.039, 0.032, 0.027, 0.025  
-Unlikelihood, 0.041, 0.042, 0.026, 0.028  
-NSG+Unlikeliohod, 0.046, 0.043, 0.031, 0.029 
+Method, Entropy, Prompt-based 
+NSG, 0.039,0.025  
+Unlikelihood, 0.041, .028  
+NSG+Unlikeliohod, 0.046,0.029 
