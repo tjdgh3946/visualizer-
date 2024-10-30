@@ -191,7 +191,7 @@ moneplot.mutiple_bar(grid=False, xlabel="", ylabel="AUROC", cgr=1.0, show_value=
     
 
 
-## Direct figure with numpy array 
+## Direct figure with plot 
 
 
 ```python
