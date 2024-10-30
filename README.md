@@ -2,7 +2,7 @@
 <div style="display: flex; align-items: center;">
   <img src="figure/monet.jfif" alt="icon" width="100" style="margin-right: 50px;"/>
   <div>
-  <p style="font-family: '', 'Georgia', 'Times New Roman', serif; font-size: 18px; font-style: italic;">
+  <p style="font-family: 'Georgia', 'Times New Roman', serif; font-size: 18px; font-style: italic;">
   <strong>Transform your csv table into the figure!</strong>
 </p>
 </p>
