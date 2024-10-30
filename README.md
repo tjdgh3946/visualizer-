@@ -134,8 +134,8 @@ monetplot.histogram(density=True, ylabel="Density", title="Histogram", path="his
 
 ## Bar Chart 
 ### Class gap ratio (cgr)과 width ratio (wr)을 조절해서 figure 생성 
-Class간의 공백:  $cgr*wr-\frac{wr \cdot \C}{\C+1}$, $\C$는 클래스의 개수  
-Bar의 width: $\frac{wr}{\C+1}$ 
+Class간의 공백:  $cgr*wr-\frac{wr \cdot |C|}{|C|+1}$, $|C|$는 클래스의 개수  
+Bar의 width: $\frac{wr}{|C|+1}$ 
 
 `new_data/mbar.csv`
 | type       | GPT-neo 1.3B | GPT-neo 2.7B | OPT 1.3B | OPT 13B | GPT-3 davinci 002 |
